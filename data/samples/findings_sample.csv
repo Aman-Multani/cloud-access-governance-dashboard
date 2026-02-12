@@ -1,0 +1,4 @@
+principal_type,principal_name,finding_type,severity,points,recommendation
+User,test-no-mfa,MissingMFA,High,3,Enable MFA for this user.
+User,test-old-key,AccessKeyPresent,Medium,2,Rotate access keys and disable unused keys.
+User,test-admin,AdminPermissions,High,5,Replace admin policy with least-privilege permissions.

@@ -1,0 +1,35 @@
+{
+  "generated_at": "2026-02-12",
+  "account_note": "Lab account - Week 4 snapshot (sample)",
+  "users": [
+    {
+      "user_name": "amandeep-admin",
+      "mfa_enabled": true,
+      "access_keys_count": 0,
+      "has_admin": true,
+      "has_wildcard": false
+    },
+    {
+      "user_name": "test-no-mfa",
+      "mfa_enabled": false,
+      "access_keys_count": 0,
+      "has_admin": false,
+      "has_wildcard": false
+    },
+    {
+      "user_name": "test-old-key",
+      "mfa_enabled": false,
+      "access_keys_count": 1,
+      "has_admin": false,
+      "has_wildcard": false
+    },
+    {
+      "user_name": "test-admin",
+      "mfa_enabled": false,
+      "access_keys_count": 0,
+      "has_admin": true,
+      "has_wildcard": false
+    }
+  ],
+  "roles": []
+}
