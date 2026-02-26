@@ -1,51 +1,124 @@
-# IAM Risks, Checks, Scoring (Draft)
+# IAM Risks, Checks, and Scoring (v1)
 
-## Risks / Checks we will detect
-1) Missing MFA (User)
-- Condition: user has console access and no MFA device
-- Fix: enable MFA for the user
+Goal:
+Define the IAM risks we detect, what triggers them, how they are scored, and how they should be fixed.
 
-2) Access key exists
-- Condition: user has 1+ access keys
-- Fix: rotate keys, disable unused keys
 
-3) Old access key
-- Condition: key age >= 90 days (threshold adjustable)
-- Fix: rotate keys, set rotation policy
+## Risks / Checks We Detect
 
-4) Admin permissions
-- Condition: attached policy includes AdministratorAccess or equivalent
-- Fix: replace with least-privilege permissions
+### 1. Missing MFA (User)
 
-5) Wildcard permissions
-- Condition: policy uses Action="*" or Resource="*"
-- Fix: scope actions/resources to required services only
+Condition:
+- User has console access
+- MFA is not enabled
 
-6) Overly broad role trust
-- Condition: trust policy allows broad principal (e.g., "*", or wide account principal without conditions)
-- Fix: restrict principal and add conditions (MFA/external ID)
+Fix:
+Enable MFA for the user.
 
-## Simple scoring (points)
-| Finding | Points |
-|---|---|
-| Admin permissions | 5 |
-| Wildcard permissions | 5 |
-| Missing MFA | 3 |
-| Old key (>=90 days) | 3 |
-| Access key exists | 2 |
-| Broad role trust | 3 |
+Points: 3
 
-Severity:
-- High: 7+
-- Medium: 4–6
-- Low: 1–3
 
-## Fix-first priority
-1) Admin / Wildcard
-2) Missing MFA
-3) Broad trust
-4) Old keys / access keys
+### 2. Access Key Exists
 
-## Mapping to findings output (for dashboard/export)
-Each finding should include:
-principal_name, principal_type, finding_type, severity, points, recommendation
+Condition:
+- User has one or more access keys
+
+Fix:
+Rotate keys and disable unused keys. Prefer short-term credentials where possible.
+
+Points: 2
+
+
+### 3. Old Access Key
+
+Condition:
+- Access key age is 90 days or more  
+- (Threshold is configurable)
+
+Fix:
+Rotate or delete old keys and enforce key rotation policy.
+
+Points: 3
+
+
+### 4. Admin Permissions
+
+Condition:
+- Attached policy includes AdministratorAccess  
+- Or equivalent full administrative access
+
+Fix:
+Replace with least-privilege permissions. Limit admin access to break-glass users only.
+
+Points: 5
+
+
+
+### 5. Wildcard Permissions
+
+Condition:
+- Policy contains "*" in Action or Resource  
+- Or overly broad service permissions
+
+Fix:
+Scope permissions to specific actions and resources required.
+
+Points: 5
+
+
+
+### 6. Overly Broad Role Trust
+
+Condition:
+- Role trust policy allows broad principal (for example "*")  
+- Or wide account principal without restrictive conditions
+
+Fix:
+Restrict trusted principals and add conditions such as MFA or external ID.
+
+Points: 3
+
+
+## Scoring Model
+
+Total risk score is calculated by adding all finding points for a principal.
+
+Severity Levels:
+
+- High: 7 or more points
+- Medium: 4 to 6 points
+- Low: 1 to 3 points
+
+
+## Fix-First Priority Order
+
+1. Admin Permissions  
+2. Wildcard Permissions  
+3. Missing MFA  
+4. Broad Role Trust  
+5. Old Access Keys  
+6. Access Key Exists  
+
+Why this order?
+
+Admin and wildcard permissions create the largest blast radius and highest impact if misused.  
+Missing MFA increases account takeover risk.  
+Broad trust allows unintended role assumption.  
+Old and existing keys are important but lower immediate impact.
+
+
+## Mapping to Findings Output (Dashboard / Export)
+
+Each finding must include the following fields:
+
+- principal_name  
+- principal_type (user or role)  
+- finding_type  
+- severity  
+- points  
+- recommendation  
+- condition_summary (why the check triggered)  
+- detected_at (timestamp)
+
+Next Step:
+Confirm final key age threshold (default 90 days) and ensure finding_type names match the CSV export exactly.
