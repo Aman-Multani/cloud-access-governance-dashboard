@@ -60,5 +60,14 @@ Principal | Type | Issue | Severity | Score | Recommendation
 | Validation Checklist | 🟢 Green |
 | Dashboard UI Plan | 🟡 Yellow (design only) |
 
+## Next Steps
+
+- Execute IAM validation tests
+- Fill Pass/Fail results in validation-checklist.md
+- Capture AWS and dashboard screenshots
+- Attach evidence links
+- Export findings and include in the weekly PDF report
+
+
 
 
