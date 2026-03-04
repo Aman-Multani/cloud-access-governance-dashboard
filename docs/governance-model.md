@@ -29,3 +29,9 @@
 - Detect baseline violations and assign a simple risk score (High/Medium/Low).
 - Produce a fix-first prioritized list and export results (CSV/PDF).
 - Validate using intentionally risky IAM test cases.
+
+## Governance checks (pass/fail criteria)
+- MFA: 100% of IAM users with console access must have MFA enabled.
+- Access keys: keys must be rotated within 90 days; unused keys should be disabled.
+- Privilege: no regular users should have AdministratorAccess or wildcard permissions (*).
+- Trust policies: roles should not allow overly broad principals; trust should be restricted to specific principals.
