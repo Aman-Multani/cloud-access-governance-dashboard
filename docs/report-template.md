@@ -1,4 +1,24 @@
-# Weekly Group Report Template (Audit Style)
+# Weekly Group Report
+
+## Header
+Course:  
+Project: AWS IAM Security Validation  
+Week #:  
+Date:  
+
+## Team Roster
+
+| Name | Role |
+|-----|-----|
+| Amna | Reporting + Validation Evidence |
+| Member 2 | |
+| Member 3 | |
+
+## Goals
+- Set up reporting structure
+- Define validation tests
+- Prepare evidence checklist
+- Plan dashboard UI
 
 ## Summary
 - Total findings: __
@@ -8,16 +28,27 @@
 ## Findings Table (example columns)
 Principal | Type | Issue | Severity | Score | Recommendation
 
+## Validation Tests
+
+| Test | Scenario | Expected Result | Status |
+|-----|-----|-----|-----|
+| test-no-mfa | User without MFA | MissingMFA | |
+| test-old-key | Access key exists | AccessKeyPresent | |
+| test-admin | Admin policy attached | AdminPermissions | |
+
 ## Evidence
 - Screenshot: IAM user list
 - Screenshot: test-no-mfa (no MFA)
 - Screenshot: test-old-key (access key exists)
 - Screenshot: test-admin (admin policy attached)
 - Screenshot: dashboard results (later)
-- Export file: findings.csv (later)
+- Export file: findings.csv (dashboard export later)
 
-## Conclusion / Next Steps
+## Next Steps
 - Build collector output
-- Run checks + scoring
-- Display fix-first list + export
+- Run validation checks
+- Apply scoring
+- Display fix-first list
+- Add export functionality
+
 
