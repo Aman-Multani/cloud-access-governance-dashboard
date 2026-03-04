@@ -122,3 +122,12 @@ Each finding must include the following fields:
 
 Next Step:
 Confirm final key age threshold (default 90 days) and ensure finding_type names match the CSV export exactly.
+
+## Validation Mapping (Lab Test Users)
+
+These checks were validated using the IAM test identities in the lab environment.
+
+- test-no-mfa → triggers MissingMFA
+- test-old-key → triggers AccessKeyPresent (and OldKey when age threshold is met)
+- test-admin → triggers AdminPermissions
+
