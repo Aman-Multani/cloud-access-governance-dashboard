@@ -1,10 +1,10 @@
 # Weekly Group Report
 
 ## Header
-Course:  
+Course: INFO36206 Cyber Security Capestone
 Project: AWS IAM Security Validation  
 Week #:  
-Date:  
+Date:  2026-03-04
 
 ## Team Roster
 
@@ -67,6 +67,7 @@ Principal | Type | Issue | Severity | Score | Recommendation
 - Capture AWS and dashboard screenshots
 - Attach evidence links
 - Export findings and include in the weekly PDF report
+
 
 
 
