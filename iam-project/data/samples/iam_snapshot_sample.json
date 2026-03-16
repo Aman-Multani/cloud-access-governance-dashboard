@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-02-06T10:30:00Z",
+  "account_id": "123456789012",
+  "principals": [
+    {
+      "principal_type": "User",
+      "name": "dev-admin",
+      "mfa_enabled": false,
+      "access_keys_count": 2,
+      "oldest_key_age_days": 412,
+      "attached_policies": ["AdministratorAccess"],
+      "has_admin": true,
+      "has_wildcard": true,
+      "trust_is_broad": false,
+      "risk_score": 92,
+      "priority": "High"
+    }
+  ]
+}
