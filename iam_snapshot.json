@@ -1,0 +1,52 @@
+{
+  "users": [
+    {
+      "UserName": "amandeep-admin",
+      "HasMFA": true,
+      "AccessKeys": [
+        {
+          "KeyId": "AKIATPBV345JHREKUXR3",
+          "Status": "Active",
+          "AgeDays": 9
+        }
+      ],
+      "AttachedPolicies": [
+        "AdministratorAccess",
+        "IAMUserChangePassword"
+      ]
+    },
+    {
+      "UserName": "test-admin",
+      "HasMFA": false,
+      "AccessKeys": [],
+      "AttachedPolicies": [
+        "AdministratorAccess",
+        "IAMUserChangePassword"
+      ]
+    },
+    {
+      "UserName": "test-no-mfa",
+      "HasMFA": false,
+      "AccessKeys": [],
+      "AttachedPolicies": [
+        "IAMUserChangePassword",
+        "AIOpsReadOnlyAccess"
+      ]
+    },
+    {
+      "UserName": "test-old-key",
+      "HasMFA": false,
+      "AccessKeys": [
+        {
+          "KeyId": "AKIATPBV345JFRGRWXFX",
+          "Status": "Active",
+          "AgeDays": 61
+        }
+      ],
+      "AttachedPolicies": [
+        "IAMUserChangePassword",
+        "AIOpsReadOnlyAccess"
+      ]
+    }
+  ]
+}

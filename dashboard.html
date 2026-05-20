@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IAM Governance Dashboard</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:#0D1B2A; color:#FFFFFF; font-family:'Segoe UI', sans-serif; min-height:100vh; }
+
+    .header { background:#1B2A3D; border-bottom:2px solid #0D9488; padding:20px 40px; display:flex; align-items:center; justify-content:space-between; }
+    .header-left h1 { font-size:22px; color:#FFFFFF; font-weight:700; }
+    .header-left p  { font-size:13px; color:#64748B; margin-top:3px; }
+    .header-right   { font-size:12px; color:#0D9488; font-weight:600; letter-spacing:1px; }
+
+    .stats { display:flex; gap:20px; padding:30px 40px 10px; }
+    .stat-card { background:#1B2A3D; border:1px solid; border-radius:8px; padding:18px 28px; flex:1; text-align:center; }
+    .stat-card .num  { font-size:38px; font-weight:700; }
+    .stat-card .label{ font-size:11px; color:#64748B; margin-top:4px; letter-spacing:1px; font-weight:600; }
+    .stat-total  { border-color:#0D9488; }
+    .stat-total .num  { color:#14B8A6; }
+    .stat-critical { border-color:#EF4444; }
+    .stat-critical .num { color:#EF4444; }
+    .stat-high   { border-color:#F97316; }
+    .stat-high .num   { color:#F97316; }
+    .stat-medium { border-color:#F59E0B; }
+    .stat-medium .num { color:#F59E0B; }
+
+    .section { padding:20px 40px 40px; }
+    .section-title { font-size:13px; color:#0D9488; font-weight:700; letter-spacing:2px; margin-bottom:14px; }
+
+    .table-wrap { border:1px solid #243447; border-radius:8px; overflow:hidden; }
+    table { width:100%; border-collapse:collapse; }
+    thead tr { background:#243447; }
+    thead th { padding:12px 16px; text-align:left; font-size:11px; color:#64748B; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
+    tbody tr:hover { background:#1B2A3D !important; }
+
+    .footer { text-align:center; padding:20px; color:#243447; font-size:12px; border-top:1px solid #1B2A3D; }
+    .goal { background:#0B2A26; border:1px solid #0D9488; border-left:4px solid #0D9488; border-radius:4px; padding:14px 20px; margin:0 40px 20px; font-size:13px; color:#CBD5E1; font-style:italic; }
+    .goal span { color:#14B8A6; font-weight:700; font-style:normal; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-left">
+      <h1>Cloud Access Governance Dashboard</h1>
+      <p>IAM Risk + Least Privilege Enforcement — Fix-First View</p>
+    </div>
+    <div class="header-right">PROOF OF CONCEPT v1</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card stat-total">
+      <div class="num">7</div>
+      <div class="label">TOTAL FINDINGS</div>
+    </div>
+    <div class="stat-card stat-critical">
+      <div class="num">3</div>
+      <div class="label">CRITICAL</div>
+    </div>
+    <div class="stat-card stat-high">
+      <div class="num">2</div>
+      <div class="label">HIGH</div>
+    </div>
+    <div class="stat-card stat-medium">
+      <div class="num">2</div>
+      <div class="label">MEDIUM</div>
+    </div>
+  </div>
+
+  <div class="goal">
+    <span>Goal:</span> Make IAM governance visible, measurable, and actionable — sorted by highest risk first.
+  </div>
+
+  <div class="section">
+    <div class="section-title">FIX-FIRST RISK LIST</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>User</th>
+            <th>Severity</th>
+            <th>Check</th>
+            <th>Detail</th>
+            <th>Recommendation</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+    <tr style="background:#2A1A1A; border-bottom:1px solid #243447;">
+      <td style="padding:12px 16px; color:#64748B; font-size:13px;">1</td>
+      <td style="padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:13px;">test-admin</td>
+      <td style="padding:12px 16px;">
+        <span style="background:#EF444422; color:#EF4444; border:1px solid #EF4444; padding:3px 10px; border-radius:4px; font-size:11px; font-weight:700; letter-spacing:1px;">CRITICAL</span>
+      </td>
+      <td style="padding:12px 16px; color:#14B8A6; font-size:13px; font-weight:600;">MissingMFA</td>
+      <td style="padding:12px 16px; color:#CBD5E1; font-size:12px;">User has no MFA device attached</td>
+      <td style="padding:12px 16px; color:#94A3B8; font-size:12px; font-style:italic;">Enable MFA immediately for this user</td>
+    </tr>
+    <tr style="background:#2A1A1A; border-bottom:1px solid #243447;">
+      <td style="padding:12px 16px; color:#64748B; font-size:13px;">2</td>
+      <td style="padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:13px;">test-no-mfa</td>
+      <td style="padding:12px 16px;">
+        <span style="background:#EF444422; color:#EF4444; border:1px solid #EF4444; padding:3px 10px; border-radius:4px; font-size:11px; font-weight:700; letter-spacing:1px;">CRITICAL</span>
+      </td>
+      <td style="padding:12px 16px; color:#14B8A6; font-size:13px; font-weight:600;">MissingMFA</td>
+      <td style="padding:12px 16px; color:#CBD5E1; font-size:12px;">User has no MFA device attached</td>
+      <td style="padding:12px 16px; color:#94A3B8; font-size:12px; font-style:italic;">Enable MFA immediately for this user</td>
+    </tr>
+    <tr style="background:#2A1A1A; border-bottom:1px solid #243447;">
+      <td style="padding:12px 16px; color:#64748B; font-size:13px;">3</td>
+      <td style="padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:13px;">test-old-key</td>
+      <td style="padding:12px 16px;">
+        <span style="background:#EF444422; color:#EF4444; border:1px solid #EF4444; padding:3px 10px; border-radius:4px; font-size:11px; font-weight:700; letter-spacing:1px;">CRITICAL</span>
+      </td>
+      <td style="padding:12px 16px; color:#14B8A6; font-size:13px; font-weight:600;">MissingMFA</td>
+      <td style="padding:12px 16px; color:#CBD5E1; font-size:12px;">User has no MFA device attached</td>
+      <td style="padding:12px 16px; color:#94A3B8; font-size:12px; font-style:italic;">Enable MFA immediately for this user</td>
+    </tr>
+    <tr style="background:#2A1E14; border-bottom:1px solid #243447;">
+      <td style="padding:12px 16px; color:#64748B; font-size:13px;">4</td>
+      <td style="padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:13px;">amandeep-admin</td>
+      <td style="padding:12px 16px;">
+        <span style="background:#F9731622; color:#F97316; border:1px solid #F97316; padding:3px 10px; border-radius:4px; font-size:11px; font-weight:700; letter-spacing:1px;">HIGH</span>
+      </td>
+      <td style="padding:12px 16px; color:#14B8A6; font-size:13px; font-weight:600;">AdminPermissions</td>
+      <td style="padding:12px 16px; color:#CBD5E1; font-size:12px;">User has AdministratorAccess policy attached</td>
+      <td style="padding:12px 16px; color:#94A3B8; font-size:12px; font-style:italic;">Replace with a least-privilege policy scoped to job role</td>
+    </tr>
+    <tr style="background:#2A1E14; border-bottom:1px solid #243447;">
+      <td style="padding:12px 16px; color:#64748B; font-size:13px;">5</td>
+      <td style="padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:13px;">test-admin</td>
+      <td style="padding:12px 16px;">
+        <span style="background:#F9731622; color:#F97316; border:1px solid #F97316; padding:3px 10px; border-radius:4px; font-size:11px; font-weight:700; letter-spacing:1px;">HIGH</span>
+      </td>
+      <td style="padding:12px 16px; color:#14B8A6; font-size:13px; font-weight:600;">AdminPermissions</td>
+      <td style="padding:12px 16px; color:#CBD5E1; font-size:12px;">User has AdministratorAccess policy attached</td>
+      <td style="padding:12px 16px; color:#94A3B8; font-size:12px; font-style:italic;">Replace with a least-privilege policy scoped to job role</td>
+    </tr>
+    <tr style="background:#2A2210; border-bottom:1px solid #243447;">
+      <td style="padding:12px 16px; color:#64748B; font-size:13px;">6</td>
+      <td style="padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:13px;">amandeep-admin</td>
+      <td style="padding:12px 16px;">
+        <span style="background:#F59E0B22; color:#F59E0B; border:1px solid #F59E0B; padding:3px 10px; border-radius:4px; font-size:11px; font-weight:700; letter-spacing:1px;">MEDIUM</span>
+      </td>
+      <td style="padding:12px 16px; color:#14B8A6; font-size:13px; font-weight:600;">AccessKeyPresent</td>
+      <td style="padding:12px 16px; color:#CBD5E1; font-size:12px;">Active access key — age: 9 days</td>
+      <td style="padding:12px 16px; color:#94A3B8; font-size:12px; font-style:italic;">Monitor key age; rotate before 90 days</td>
+    </tr>
+    <tr style="background:#2A2210; border-bottom:1px solid #243447;">
+      <td style="padding:12px 16px; color:#64748B; font-size:13px;">7</td>
+      <td style="padding:12px 16px; color:#FFFFFF; font-weight:600; font-size:13px;">test-old-key</td>
+      <td style="padding:12px 16px;">
+        <span style="background:#F59E0B22; color:#F59E0B; border:1px solid #F59E0B; padding:3px 10px; border-radius:4px; font-size:11px; font-weight:700; letter-spacing:1px;">MEDIUM</span>
+      </td>
+      <td style="padding:12px 16px; color:#14B8A6; font-size:13px; font-weight:600;">AccessKeyPresent</td>
+      <td style="padding:12px 16px; color:#CBD5E1; font-size:12px;">Active access key — age: 61 days</td>
+      <td style="padding:12px 16px; color:#94A3B8; font-size:12px; font-style:italic;">Monitor key age; rotate before 90 days</td>
+    </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer">
+    IAM Governance Dashboard — POC v1 &nbsp;·&nbsp; Team: Amandeep Singh · Gurpreet Kaur · Yashdeep Singh · Amna Rafiq
+  </div>
+</body>
+</html>

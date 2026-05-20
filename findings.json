@@ -1,0 +1,58 @@
+[
+  {
+    "UserName": "test-admin",
+    "Check": "MissingMFA",
+    "Severity": "CRITICAL",
+    "Points": 10,
+    "Detail": "User has no MFA device attached",
+    "Recommendation": "Enable MFA immediately for this user"
+  },
+  {
+    "UserName": "test-no-mfa",
+    "Check": "MissingMFA",
+    "Severity": "CRITICAL",
+    "Points": 10,
+    "Detail": "User has no MFA device attached",
+    "Recommendation": "Enable MFA immediately for this user"
+  },
+  {
+    "UserName": "test-old-key",
+    "Check": "MissingMFA",
+    "Severity": "CRITICAL",
+    "Points": 10,
+    "Detail": "User has no MFA device attached",
+    "Recommendation": "Enable MFA immediately for this user"
+  },
+  {
+    "UserName": "amandeep-admin",
+    "Check": "AdminPermissions",
+    "Severity": "HIGH",
+    "Points": 8,
+    "Detail": "User has AdministratorAccess policy attached",
+    "Recommendation": "Replace with a least-privilege policy scoped to job role"
+  },
+  {
+    "UserName": "test-admin",
+    "Check": "AdminPermissions",
+    "Severity": "HIGH",
+    "Points": 8,
+    "Detail": "User has AdministratorAccess policy attached",
+    "Recommendation": "Replace with a least-privilege policy scoped to job role"
+  },
+  {
+    "UserName": "amandeep-admin",
+    "Check": "AccessKeyPresent",
+    "Severity": "MEDIUM",
+    "Points": 5,
+    "Detail": "Active access key \u2014 age: 9 days",
+    "Recommendation": "Monitor key age; rotate before 90 days"
+  },
+  {
+    "UserName": "test-old-key",
+    "Check": "AccessKeyPresent",
+    "Severity": "MEDIUM",
+    "Points": 5,
+    "Detail": "Active access key \u2014 age: 61 days",
+    "Recommendation": "Monitor key age; rotate before 90 days"
+  }
+]

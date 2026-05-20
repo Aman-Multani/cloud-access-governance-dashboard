@@ -1,0 +1,8 @@
+UserName,Check,Severity,Points,Detail,Recommendation
+test-admin,MissingMFA,CRITICAL,10,User has no MFA device attached,Enable MFA immediately for this user
+test-no-mfa,MissingMFA,CRITICAL,10,User has no MFA device attached,Enable MFA immediately for this user
+test-old-key,MissingMFA,CRITICAL,10,User has no MFA device attached,Enable MFA immediately for this user
+amandeep-admin,AdminPermissions,HIGH,8,User has AdministratorAccess policy attached,Replace with a least-privilege policy scoped to job role
+test-admin,AdminPermissions,HIGH,8,User has AdministratorAccess policy attached,Replace with a least-privilege policy scoped to job role
+amandeep-admin,AccessKeyPresent,MEDIUM,5,Active access key — age: 9 days,Monitor key age; rotate before 90 days
+test-old-key,AccessKeyPresent,MEDIUM,5,Active access key — age: 61 days,Monitor key age; rotate before 90 days
