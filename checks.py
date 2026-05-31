@@ -85,7 +85,7 @@ for user in snapshot["users"]:
 
 # ── Role-level checks ────────────────────────────────────────────────────────
 # CHECK 5: Risk Trust Policy
-# Flags any IAM role whose trust policy allows Principal: * (anyone can assume it)
+# Flags roles with overly broad trust policies
 for role in snapshot.get("roles", []):
     role_name = role.get("RoleName", "unknown")
     trust_doc = role.get("TrustPolicyDocument", {})
@@ -94,27 +94,41 @@ for role in snapshot.get("roles", []):
         statements = [statements]
     for statement in statements:
         principal = statement.get("Principal", {})
-        # Principal can be "*" (string) or {"AWS": "*"} or {"Service": ...}
-        is_wildcard = False
+        is_broad = False
+        detail_reason = ""
+
         if principal == "*":
-            is_wildcard = True
+            is_broad = True
+            detail_reason = "allows Principal: * — any entity can assume this role"
         elif isinstance(principal, dict):
             aws_principal = principal.get("AWS", "")
-            if aws_principal == "*" or (isinstance(aws_principal, list) and "*" in aws_principal):
-                is_wildcard = True
-        if is_wildcard:
+            # Normalize to list
+            if isinstance(aws_principal, str):
+                aws_principal = [aws_principal]
+            for p in aws_principal:
+                if p == "*":
+                    is_broad = True
+                    detail_reason = "allows Principal: * — any AWS entity can assume this role"
+                    break
+                # Catch account root — arn:aws:iam::ACCOUNT_ID:root
+                if isinstance(p, str) and p.endswith(":root"):
+                    is_broad = True
+                    detail_reason = f"allows account root principal ({p}) — entire AWS account can assume this role"
+                    break
+
+        if is_broad:
             findings.append({
                 "UserName": f"[ROLE] {role_name}",
                 "Check": "RiskTrustPolicy",
                 "Severity": "HIGH",
                 "Points": 8,
-                "Detail": f"Role '{role_name}' trust policy allows Principal: * — any AWS entity can assume this role",
-                "Recommendation": "Restrict the trust policy Principal to specific trusted AWS accounts or services"
+                "Detail": f"Role '{role_name}' trust policy {detail_reason}",
+                "Recommendation": "Restrict the trust policy Principal to specific trusted roles or services only"
             })
-            print(f"  [HIGH]     {role_name} → RiskTrustPolicy (wildcard principal in trust policy)")
-            break  # one finding per role
+            print(f"  [HIGH]     {role_name} → RiskTrustPolicy (broad trust principal)")
+            break
 
-
+        
 # ── Sort & save ──────────────────────────────────────────────────────────────
 # Sort by points descending (fix-first order)
 findings.sort(key=lambda x: x["Points"], reverse=True)

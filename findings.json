@@ -24,6 +24,14 @@
     "Recommendation": "Enable MFA immediately for this user"
   },
   {
+    "UserName": "test-wildcard",
+    "Check": "MissingMFA",
+    "Severity": "CRITICAL",
+    "Points": 10,
+    "Detail": "User has no MFA device attached",
+    "Recommendation": "Enable MFA immediately for this user"
+  },
+  {
     "UserName": "amandeep-admin",
     "Check": "AdminPermissions",
     "Severity": "HIGH",
@@ -40,15 +48,31 @@
     "Recommendation": "Replace with a least-privilege policy scoped to job role"
   },
   {
-    "UserName": "amandeep-admin",
-    "Check": "AccessKeyPresent",
-    "Severity": "MEDIUM",
-    "Points": 5,
-    "Detail": "Active access key \u2014 age: 9 days",
-    "Recommendation": "Monitor key age; rotate before 90 days"
+    "UserName": "test-old-key",
+    "Check": "OldAccessKey",
+    "Severity": "HIGH",
+    "Points": 8,
+    "Detail": "Active access key \u2014 age: 113 days",
+    "Recommendation": "Rotate or disable this key"
   },
   {
-    "UserName": "test-old-key",
+    "UserName": "test-wildcard",
+    "Check": "WildcardPermissions",
+    "Severity": "HIGH",
+    "Points": 8,
+    "Detail": "Inline policy 'wildcard-policy' contains wildcard Action or Resource (*)",
+    "Recommendation": "Replace wildcard statements with specific actions and resources scoped to job role"
+  },
+  {
+    "UserName": "[ROLE] test-broad-trust",
+    "Check": "RiskTrustPolicy",
+    "Severity": "HIGH",
+    "Points": 8,
+    "Detail": "Role 'test-broad-trust' trust policy allows account root principal (arn:aws:iam::238483662674:root) \u2014 entire AWS account can assume this role",
+    "Recommendation": "Restrict the trust policy Principal to specific trusted roles or services only"
+  },
+  {
+    "UserName": "amandeep-admin",
     "Check": "AccessKeyPresent",
     "Severity": "MEDIUM",
     "Points": 5,

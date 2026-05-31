@@ -7,13 +7,14 @@
         {
           "KeyId": "AKIATPBV345JHREKUXR3",
           "Status": "Active",
-          "AgeDays": 9
+          "AgeDays": 61
         }
       ],
       "AttachedPolicies": [
         "AdministratorAccess",
         "IAMUserChangePassword"
-      ]
+      ],
+      "InlinePolicies": {}
     },
     {
       "UserName": "test-admin",
@@ -22,7 +23,8 @@
       "AttachedPolicies": [
         "AdministratorAccess",
         "IAMUserChangePassword"
-      ]
+      ],
+      "InlinePolicies": {}
     },
     {
       "UserName": "test-no-mfa",
@@ -31,7 +33,8 @@
       "AttachedPolicies": [
         "IAMUserChangePassword",
         "AIOpsReadOnlyAccess"
-      ]
+      ],
+      "InlinePolicies": {}
     },
     {
       "UserName": "test-old-key",
@@ -40,13 +43,49 @@
         {
           "KeyId": "AKIATPBV345JFRGRWXFX",
           "Status": "Active",
-          "AgeDays": 61
+          "AgeDays": 113
         }
       ],
       "AttachedPolicies": [
         "IAMUserChangePassword",
         "AIOpsReadOnlyAccess"
-      ]
+      ],
+      "InlinePolicies": {}
+    },
+    {
+      "UserName": "test-wildcard",
+      "HasMFA": false,
+      "AccessKeys": [],
+      "AttachedPolicies": [],
+      "InlinePolicies": {
+        "wildcard-policy": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": "*",
+              "Resource": "*"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "roles": [
+    {
+      "RoleName": "test-broad-trust",
+      "TrustPolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "AWS": "arn:aws:iam::238483662674:root"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      }
     }
   ]
 }
